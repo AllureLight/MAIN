@@ -1,0 +1,9 @@
+{
+    "files.associations": {
+        "functional": "c",
+        "string.h": "c",
+        "stdlib.h": "c",
+        "Q16.C": "cpp"
+    },
+    "C_Cpp.errorSquiggles": "disabled"
+}
