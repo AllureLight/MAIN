@@ -3,10 +3,6 @@
 #include <string.h>
 #include <math.h>
 
-/*Faça uma função em C que receba três números e usando a função DOBRO da 
-questão anterior imprima o dobro de cada um dos números. Use no mínimo 2 funções.*/
-
-
 float ler(float leitura){
     printf("Fale um numero:\n");
     scanf("%f", &leitura);

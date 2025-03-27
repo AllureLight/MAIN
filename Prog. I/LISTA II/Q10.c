@@ -3,10 +3,6 @@
 #include <string.h>
 #include <math.h>
 
-/*Faça uma função em C que leia um vetor A de 30 elementos float e, usando o
-procedimento METADE (criado na questão anterior), divida todos seus elementos
-pela metade.*/
-
 struct numero{
     float num;
 };

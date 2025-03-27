@@ -3,8 +3,6 @@
 #include <string.h>
 #include <math.h>
 
-/*Faça uma função em C chamada METADE que divida um valor do tipo float (passado como parâmetro) pela metade.*/
-
 struct numero{
     float num;
 };

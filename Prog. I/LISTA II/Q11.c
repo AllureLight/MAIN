@@ -3,9 +3,6 @@
 #include <string.h>
 #include <math.h>
 
-/*Faça uma função em C chamada PAR, que deve retornar o valor 
-inteiro “0” se o número recebido por parâmetro for é par.*/
-
 int PAR(int num){
     if (num%2==0)
         return 0;

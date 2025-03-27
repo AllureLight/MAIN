@@ -3,28 +3,38 @@
 #include <string.h>
 #include <math.h>
 
-/*Uma biblioteca possui obras de ciências exatas, humanas e biomédicas, totalizando
-em cada uma das áreas 3000 diferentes obras. Para informatizar esta biblioteca foram
-agrupadas as informações de cada obra da seguinte forma:
- Código de Catalogação
- Nome da Obra
- Nome do Autor
- Editora
- Doado (se a obra foi doada ou comprada)
- Número de Páginas
- Palavras Chaves
- Assunto
-a) Declare a(s) estrutura(s) e variáveis necessárias para armazenar estas informações.
-b) Elabore um algoritmo que receba um código de catalogação e retorne a posição do
-vetor que contiver o código. Se o código não for encontrado o algoritmo deve retornar
-o valor -1. (Pesquisa por código).
-c) Elabore um novo algoritmo de pesquisa que receba o nome autor e retorne o
-número de obras cadastradas daquele autor.*/
+struct VARIAVEIS{
+    int Codigo;
+    char NomeObra;
+    char NomeAutor[30];
+    char Editora;
+    char Doado;
+    int NumeroPag;
+    char PalavraChave;
+    char Assunto;
+};
 
 int main(){
-    struct VARIAVEIS{
-        
+    struct VARIAVEIS var[3000];
+    int pesquisa, cont=0, i, contadorobras=0;
+    char nomepesquisado[30];
+    printf("DiGITE UM CODIGO DE CATALOGACAO:\n");
+    scanf("%d", &pesquisa);
+    for(i=0;i<3000;i++){
+        if(pesquisa==var[i].Codigo){
+            printf("A posicao do vetor é %d", i);
+        }
     }
-
-
+    if(cont==0){
+        return -1;
+    }
+    printf("Digite o nome do autor:\n");
+    scanf("%s", nomepesquisado);
+    for(i=0;i<3000;i++){
+        if(nomepesquisado == var[i].NomeAutor){
+            contadorobras = contadorobras + 1;
+        }
+    }
+    printf("O numero de obras cadastradas desse autor é %d", contadorobras);
+    return 0;
 }

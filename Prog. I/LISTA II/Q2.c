@@ -3,43 +3,51 @@
 #include <string.h>
 #include <math.h>
 
-/*Supondo que todo carro tem um modelo, marca, ano, cor e preço. Faça um programa
-que leia as informações de 10 carros que uma concessionária possui para revenda e
-imprima na tela o modelo, marca, cor e o ano dos carros que possuem preço abaixo de
-R$ 80.000,00. Faça funções específicas a para leitura e impressão dos dados.*/
+#define TAM 10
 
-char modelo[3][30];
-int valor[2], ano[2], i;
+typedef struct{
+    float preco;
+    char marca[50];
+    char cor[50];
+    int ano;
+    char modelo[50];
+} carro;
 
-int info();
-
-int impre();
-
-int main(){
-    printf("----------------------------------\n");
-    printf("     BEM VINDO A CONCESSIONARIA\n");
-    printf("----------------------------------");
-    for(i=0;i<2;i++){
-        info();
+void leitura (carro c[] , int tam) {
+    for (int i=0; i<tam; i++){
+    printf("digite o preco do carro: \n");
+    scanf("%f",&c[i].preco);
+    printf("digite a marca do carro: \n");
+    scanf("%49s",c[i].marca);
+    printf("digite a cor do carro: \n");
+    scanf("%49s",c[i].cor);
+    printf("digie o modelo do carro: \n");
+    scanf("%49s",c[i].modelo);
+    printf("digite o ano do carro: \n");
+    scanf("%d",&c[i].ano);
+    printf("-------------------------\n");
     }
-    for(i=0;i<2;i++){
-        if(valor[i]<80){
-            impre();
+}
+
+void impressao(carro c[] , int tam){
+printf("Carros com preço abaixo de 80k: \n");
+    for(int i=0; i<tam; i++){
+        if(c[i].preco <80000 ){
+    printf("------------------------------------");
+    printf("O preco do carro e: %f\n", c[i].preco);
+    printf("a marca do carro e: %s\n", c[i].marca);
+    printf("o ano do carro e: %d\n", c[i].ano);
+    printf("a cor do carro e: %s\n", c[i].cor);
+    printf("o modelo do carro e: %s\n" ,c[i].modelo);
+    printf("------------------------------------");
         }
     }
+}
+
+int main() {
+    carro carros[TAM];
+
+    leitura(carros, TAM);
+    impressao(carros, TAM);
     return 0;
-}
-
-int info(){
-    printf("\nInforme o Modelo:\n");
-    scanf("%s", &modelo[i]);
-    printf("Informe o ano:\n");
-    scanf("%d", &ano[i]);
-    printf("Informe o preco em mil:\n");
-    scanf("%d", &valor[i]);
-}
-
-int impre(){
-    printf("\nModelo:\tano:\tpreco:\n");
-    printf("%s\t%d\t%d", modelo[i], ano[i], valor[i]);
 }

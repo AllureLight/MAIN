@@ -3,9 +3,6 @@
 #include <string.h>
 #include <math.h>
 
-/*Faça uma função em C que recebe uma string S e um inteiro positivo N e 
-exiba a string S por N vezes seguidas na tela.*/
-
 char nome[30];
 int quant;
 

@@ -3,10 +3,6 @@
 #include <string.h>
 #include <math.h>
 
-/*Faça uma função em C que receba dois números inteiros x e y. Essa função deve
-verificar se x é divisível por y. No caso positivo, a função deve retornar 1, caso
-contrário 0. Escreva também um algoritmo para testar tal função.*/
-
 struct VALORES{
     int x, y, a[1];
 };

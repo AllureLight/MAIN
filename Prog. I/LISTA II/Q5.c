@@ -3,8 +3,6 @@
 #include <string.h>
 #include <math.h>
 
-/*Faça uma função em C chamada CUBO que receba um valor do tipo float e retorne a potência elevado a 3 do mesmo.*/
-
 int elevado(int numero){
     numero = pow(numero, 3);
     return numero;

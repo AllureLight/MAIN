@@ -3,8 +3,6 @@
 #include <string.h>
 #include <math.h>
 
-/*Faça uma função em C chamada TROCA que receba duas variáveis inteiras (X e Y) e troque o conteúdo entre elas.*/
-
 struct numero{
     int X, Y, a, b;
 };

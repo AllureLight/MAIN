@@ -3,8 +3,6 @@
 #include <string.h>
 #include <math.h>
 
-/*Faça uma função em C chamada DOBRO que receba um valor do tipo float e retorne o dobro do mesmo.*/
-
 struct numeros{
     float num1;
 };
