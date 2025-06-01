@@ -1,17 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#include <math.h.>
 
-int soma_impares(int n) {
-    if (n == 1)
-        return 1;
-    else
-        return (2 * n - 1) + soma_impares(n - 1);
+int pi(int n) {
+    
 }
 
 int main(){
     int n;
-    printf("Write a number:\n");
+    printf("Write a number for pi:\n");
     scanf("%d", &n);
-    printf("The sum for the numbers is %d", soma_impares(n));
+    printf("The pi number is %d", pi(n));
 }
