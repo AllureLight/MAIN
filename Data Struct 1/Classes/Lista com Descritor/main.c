@@ -29,7 +29,7 @@ int estaVazia(Descritor *l){
 }
 
 void insereNoInicio(Descritor *l, int v){
-    NoLista *novo = (NoLista*)malloc(sizeof(NoLista));
+    NoLista* novo = (NoLista*)malloc(sizeof(NoLista));
     if(novo!=NULL){
         novo->info=v;
         novo->prox=l->prim;

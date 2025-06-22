@@ -89,5 +89,5 @@ int main() {
     printf("\n\n");
     imprime(&lista);
     NoLista* q = ultimo(&lista);
-    printf("\nultimo: %d", q->info) /*olhar dps*/
+    printf("\nultimo: %d", q->info); /*olhar dps*/
 }
