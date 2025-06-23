@@ -1,12 +1,3 @@
-
-
-/* 
- * File:   main.c
- * Author: guilherme.a.medeiros
- *
- * Created on 12 de Maio de 2025, 15:32
- */
-
 #include <stdio.h>
 #include <stdlib.h>
 
