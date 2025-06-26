@@ -131,8 +131,57 @@ Descritor separa(Descritor *l, int n){
             return l2;
         }
         else{
-            
+            l2.cabeca = p->prox;
+            l2.cauda = l->cauda;
+            l->cauda = p;
+            p->prox = NULL;
         }
+        return l2;
+    }
+    else
+        return l2;
+}
+
+int compara(Descritor *l1, Descritor *l2){
+    if(!estaVazia(l1) && !estaVazia(l2)){
+        NoLista *p, *q;
+        for(p=l1->cabeca, q=l2->cabeca; p!=NULL && q!=NULL; p=p->prox, q=q->prox){
+            if(p->info != q->info)
+                return 0;
+        }
+        if(p!=NULL || q!=NULL)
+            return 0;
+        return 1;
+    }
+    else if(estaVazia(l1) && estaVazia(l2)){
+        return 1;
+    }
+    else
+        return 0;
+}
+
+Descritor noval(Descritor *l){
+    Descritor l2;
+    criarLista(&l2);
+
+    if(!estaVazia(l)){
+        NoLista *p;
+        for(p=l->cabeca; p!=NULL; p=p->prox){
+            if(p->info%2!=0){
+                NoLista* novo = (NoLista*)malloc(sizeof(NoLista));
+                if(novo!=NULL){
+                    novo->info = p->info;
+                    novo->prox = l2.cabeca;
+                    l2.cabeca = novo;
+                    if(l2.cauda==NULL){
+                        l2.cauda = novo;
+                    }
+                }
+                else
+                    return l2;
+            }
+        }
+        return l2;
     }
     else
         return l2;
