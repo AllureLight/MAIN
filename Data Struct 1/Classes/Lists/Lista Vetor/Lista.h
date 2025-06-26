@@ -28,4 +28,3 @@ void imprime(Lista *l);
 void removerElemento(Lista *l, int i);
 
 #endif /*LISTA*/
-

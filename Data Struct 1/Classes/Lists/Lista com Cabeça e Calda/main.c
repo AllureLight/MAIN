@@ -3,7 +3,7 @@
 
 typedef struct noLista{
     int info;
-    struct NoLista* prox;
+    struct noLista* prox;
 }NoLista;
 
 typedef struct lista{
@@ -79,7 +79,7 @@ void removerElemento(Descritor* l, int v){
         else{
             ant->prox = p->prox;
             if(p == l->cauda)
-                l->cauda == ant;
+                l->cauda = ant;
         }
         free(p);
     }
@@ -101,20 +101,54 @@ void liberarLista(Descritor* l){
         printf("LISTA VAZIA!\n");
 }
 
+NoLista* maiorValor(Descritor* l){
+    if(!estaVazia(l)){
+        NoLista *maior = l->cabeca;
+        for(NoLista* p = l->cabeca; p!=NULL; p = p->prox){
+            if(p->info>maior->info)
+                maior = p;
+        }
+        return maior;
+    }
+    else{
+        printf("LISTA VAZIA!");
+        return NULL;
+    }
+}
+
+Descritor separa(Descritor *l, int n){
+    Descritor l2;
+    criarLista(&l2);
+
+    if(!estaVazia(l)){
+        NoLista *p;
+        for(p=l->cabeca; p!=NULL && p->info!= n; p = p->prox){
+        }
+        if(p==NULL){
+            return l2;
+        }
+        else if(p->prox == NULL){
+            return l2;
+        }
+        else{
+            
+        }
+    }
+    else
+        return l2;
+}
+
 int main(){
     Descritor lista;
     criarLista(&lista);
-    
+
     inserirElementoInicio(&lista, 10);
     inserirElementoInicio(&lista, 20);
     inserirElementoFim(&lista, 5);
+    inserirElementoFim(&lista, 30);
     imprimeLista(&lista);
 
-    removerElemento(&lista, 5);
-    printf("\n");
-    imprimeLista(&lista);
+    NoLista *teste = maiorValor(&lista);
+    printf("\nMaior valor: %d", teste->info);
 
-    liberarLista(&lista);
-    printf("\n");
-    imprimeLista(&lista);
 }

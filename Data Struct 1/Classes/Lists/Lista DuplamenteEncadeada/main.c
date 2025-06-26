@@ -37,8 +37,10 @@ NoLista* ultimoElemento (NoLista** l) {
         }
         return p;
     }
-    else
+    else{
 	    printf("Lista vazia!");
+        return NULL;
+    }
 }
 
 void ImprimeListaOrdemDireta(NoLista** l){
@@ -66,13 +68,13 @@ void ImprimeListaOrdemInversa(NoLista** l){
 }
 
 NoLista* buscaElemento(NoLista** l, int v){
-    NoLista* p;
     if (!estaVazia(l)) {
 	    NoLista *p;
-		for (p = *l; p -> prox != NULL && p-> prox != v; p = p -> prox) {
+		for (p = *l; p -> prox != NULL; p = p -> prox) {
             if(p->info==v)
                 return p;
         }
+        return NULL;
     }
     else{
         return NULL;
@@ -108,6 +110,32 @@ void liberarLista(NoLista** l){
     *l=NULL;
 }
 
+NoLista* noval(NoLista** l){
+    if (!estaVazia(l)){
+        NoLista *p, *l2;
+        criarLista(&l2);
+        for(p = *l;p!=NULL;p=p->prox){
+            if(p->info%2!=0){
+                NoLista* novo=(NoLista*)malloc(sizeof(NoLista));
+                if(novo!=NULL){
+                    novo->info = p->info;
+                    novo->prox = l2;
+                    novo->ant = NULL;
+                    if(l2 != NULL){
+                        l2->ant = novo;
+                    }
+                    l2 = novo;
+                }
+            }
+        }
+        return l2;
+    }
+    else{
+        printf("Lista Vazia!\n");
+        return NULL;
+    }
+}
+
 int main(){
     NoLista* lista;
     criarLista(&lista);
@@ -125,6 +153,10 @@ int main(){
 
     printf("\n\nDepois de remover 10:\n");
     ImprimeListaOrdemInversa(&lista);
+
+    NoLista* lista2 = noval(&lista);
+    printf("\n\nLista 2 em ordem direta:\n");
+    ImprimeListaOrdemDireta(&lista2);
 
     liberarLista(&lista);
 

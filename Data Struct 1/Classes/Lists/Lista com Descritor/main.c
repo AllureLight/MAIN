@@ -84,7 +84,7 @@ void remover(Descritor *l, int v){
         if(ant==NULL){
             l->prim=p->prox;
             if(l->prim==NULL){
-                l->ult==NULL;
+                l->ult=NULL;
             }
         }
         else{
@@ -109,11 +109,115 @@ void liberar(Descritor *l){
 }
 
 NoLista* busca(Descritor *l, int v){
-    for(NoLista*p=l->prim; p!=NULL; p=p->prox)
-        if(p->info==v)
+    for(NoLista*p=l->prim; p!=NULL; p=p->prox){
+        if(p->info==v){
             return p;
+        }
+    }
+    return NULL;
 }
-    
+
+Descritor separa(Descritor *l, int n){
+    Descritor l2;
+    criarLista(&l2);
+
+    if(!estaVazia(l)){
+        if(l->prim == l->ult){
+            printf("Nn pode ser dividida, há apenas 1 elemento");
+            return l2;
+        }
+        NoLista* p;
+        for(p = l->prim; p!=NULL && p->info!=n; p=p->prox){
+        }
+        if(p==NULL){
+            printf("elemento nn encontrado!");
+            return l2;
+        }
+        else if(p->prox == NULL){
+            printf("nao existe proximo elemento!");
+            return l2;
+        }
+        else{
+            l2.prim = p->prox;
+            l2.ult = l->ult;
+            p->prox = NULL;
+            l->ult = p;
+
+            int count = 0;
+            for(p=l2.prim; p!=NULL; p = p->prox){
+                count++;
+            }
+            l2.n = count;
+            l->n -= count;
+
+            return l2;
+        
+        }
+    }
+    else{
+        return l2;
+    }
+}
+
+NoLista* maiorValor(Descritor *l){
+    if(!estaVazia(l)){
+        NoLista*p, *maior = l->prim;
+        for(p = l -> prim; p != NULL; p = p -> prox){
+            if(p->info > maior->info){
+                maior = p;
+            }
+        }
+        return maior;
+    }
+    else{
+        return NULL;
+    }
+}
+
+int compara(Descritor* l1 , Descritor *l2){
+    if(!estaVazia(l1) && !estaVazia(l2)){
+        NoLista *p, *q;
+        for(p=l1->prim, q=l2->prim; p!=NULL && q!=NULL; p=p->prox, q=q->prox){
+            if(p->info != q->info)
+                return 0;
+        }
+        if(p!=NULL || q!=NULL){
+            return 0;
+        }
+        return 1;
+    }
+    else if(estaVazia(l1) && estaVazia(l2)){
+        return 1;
+    }
+    else
+        return 0;
+}
+
+Descritor noval(Descritor *l){
+    Descritor l2;
+    criarLista(&l2);
+
+    if(!estaVazia(l)){
+        NoLista* p;
+        for(p=l->prim; p!=NULL; p=p->prox){
+            if(p->info%2!=0){
+                NoLista* novo = (NoLista*)malloc(sizeof(NoLista));
+                novo->info = p->info;
+                novo->prox = l2.prim;
+                l2.prim = novo;
+                if(l2.n==0){
+                    l2.ult = novo;
+
+                }
+                l2.n++;
+            }
+        }
+        return l2;
+    }
+    else
+        return l2;
+}
+
 int main() {
     Descritor lista;
     criarLista(&lista);
@@ -122,13 +226,8 @@ int main() {
     insereNoFim(&lista, 10);
     imprime(&lista);
     printf("\n\n");
-    remover(&lista, 5);
+    Descritor lista2 = separa(&lista, 5);
     imprime(&lista);
-    printf("\n\n");
-    NoLista* p= busca(&lista, 45);
-    if(p!=NULL)
-        printf("%d", p->info);
-    printf("\n\n");
-    liberar(&lista);
-    imprime(&lista);
+    printf("\n");
+    imprime(&lista2);
 }

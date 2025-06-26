@@ -20,4 +20,3 @@ int main(){
     removerElemento(lista, 1);
     imprime(lista);
 }
-

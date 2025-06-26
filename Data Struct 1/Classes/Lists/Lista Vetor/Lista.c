@@ -7,13 +7,9 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include "Lista.h"
 
 #define MAX 20
-
-typedef struct lista{
-    int itens[MAX];
-    int n;
-}Lista;
 
 Lista* criarLista(){
     Lista*l = (Lista*) malloc(sizeof(Lista));
@@ -71,5 +67,3 @@ void removerElemento(Lista *l, int i){
         printf("Indice invalido!\n");
     }
 }
-
-
