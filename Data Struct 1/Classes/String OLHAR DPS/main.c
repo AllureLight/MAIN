@@ -30,10 +30,10 @@ void imprime_rec_contrario(char *nome){
 
 /*mexer nisso*/
 
-void captura(struct Ponto p){
+void captura(Ponto p){
     
 }
-void imprime(struct Ponto p){
+void imprime(Ponto p){
     
 }
 
@@ -50,7 +50,7 @@ int main() {
     printf("\n\n");
     imprime_rec_contrario(nome);
     printf("\n\n");
-    captura(&p1);
-    imprime(&p1);
+    captura(p1);
+    imprime(p1);
     return 0;
 }
