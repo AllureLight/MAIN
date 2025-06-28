@@ -1,90 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-int IdGlobal = 0;
-
-typedef enum humor{
-    FELIZ,
-    TRISTE,
-    ANSIOSO,
-    CANSADO,
-    MOTIVADO,
-    ESTRESSADO,
-    NEUTRO,
-}Humor;
-
-typedef struct data{
-    int Dia, Mes, Ano;
-}Data;
-
-typedef struct registrodehumor{
-    int id;
-    Data dat;
-    Humor animo;
-    char Motivo[100];
-    int NotaDoDia;
-}RegistroDeHumor;
-
-//Estrutura da Lista Duplamente Encadeada;
-typedef struct noLista {
-    struct noLista *ant;
-    RegistroDeHumor info;
-    struct noLista *prox;
-}NoLista;
-
-RegistroDeHumor *criarRegistro(){
-    RegistroDeHumor *regist = (RegistroDeHumor*)malloc(sizeof(RegistroDeHumor));
-    if(regist != NULL){
-        printf("Digite a data do seu registro: (Dia / Mes / Ano)\n");
-        scanf("%d %d %d", &regist->dat.Dia, &regist->dat.Mes, &regist->dat.Ano);
-
-        printf("\nDigite o seu humor:\n0 - FELIZ\n1 - TRISTE\n2 - ANSIOSO\n3 - CANSADO\n4 - MOTIVADO\n5 - ESTRESSADO\n6 - NEUTRO\n");
-        int temp;
-        scanf("%d", &temp);
-        regist->animo = (Humor) temp;
-        getchar();
-
-        printf("\nDigite o motivo do seu humor:\n");
-        scanf("%[^\n]", regist->Motivo);
-
-        printf("\nDigite a nota do seu dia: (De 0 a 10)\n");
-        scanf("%d", &regist->NotaDoDia);
-
-        regist->id = IdGlobal++;
-    }
-    else
-        printf("Nao foi possivel criar o registro!\n");
-    return regist;
-}
-
-void ImprimirRegistro(RegistroDeHumor *regist){
-    if(regist!=NULL){
-        printf("\n-------------------------------------------\n");
-        printf("Id do registro: %d\n", regist->id);
-        printf("Data do registro: %d/%d/%d\n", regist->dat.Dia, regist->dat.Mes, regist->dat.Ano);
-        printf("Humor do registro: ");
-        switch(regist->animo){
-            case FELIZ: printf("FELIZ\n"); break;
-            case TRISTE: printf("TRISTE\n"); break;
-            case ANSIOSO: printf("ANSIOSO\n"); break;
-            case CANSADO: printf("CANSADO\n"); break;
-            case MOTIVADO: printf("MOTIVADO\n"); break;
-            case ESTRESSADO: printf("ESTRESSADO\n"); break;
-            case NEUTRO: printf("NEUTRO\n"); break;
-        }
-        printf("Motivo do registro: %s\n", regist->Motivo);
-        printf("Nota do dia do registro: %d\n", regist->NotaDoDia);
-        printf("-------------------------------------------\n");
-    }
-    else
-        printf("Nao existem registros.\n");
-}
-
-void LiberarRegistro(RegistroDeHumor *p){
-    if(p != NULL) {
-        free(p);
-    }
-}
+#include "ListaDuplamenteEnc.h"
 
 //Função para criar a lista (inicializando o ponteiro com NULL);
 void criarLista(NoLista** l) {
@@ -109,7 +25,7 @@ NoLista* ultimoElemento (NoLista** l) {
     }
 }
 
-//Função para inserir um novo Registro de Humor no fim da lista;
+//Função para inserir um novo registro de humor no fim da lista;
 void insereNoFim(NoLista** l, RegistroDeHumor v) {
     NoLista *novo = (NoLista*)malloc(sizeof(NoLista));
     if(novo != NULL){
@@ -160,7 +76,7 @@ void removerRegistroPorId(NoLista** l) {
     }
 }
 
-//Função que busca o Registro pelo humor digitado pelo usuario;
+//Função que busca o registro de acordo com o humor digitado pelo usuario;
 void buscarRegistroPorHumor(NoLista** l){
     if (!estaVazia(l)){
         unsigned int aux, cont = 0;
@@ -182,7 +98,7 @@ void buscarRegistroPorHumor(NoLista** l){
         printf("Lista Vazia!\n\n");
 }
 
-//Função que imprime todos os Registros já registrados;
+//Função que imprime todos os registros de humor já registrados;
 void imprimirTodosRegistros(NoLista** l){
     if(!estaVazia(l)){
         NoLista* p = *l;
@@ -196,6 +112,7 @@ void imprimirTodosRegistros(NoLista** l){
         printf("Lista Vazia!\n\n");
 }
 
+//Função que imprime todos registros começando pelo final da lista;
 void imprimirTodosRegistrosInvertido(NoLista** l){
     if(!estaVazia(l)){
         NoLista* p;
@@ -211,7 +128,7 @@ void imprimirTodosRegistrosInvertido(NoLista** l){
 }
 
 
-//Mostrar média da notaDoDia dos últimos x dias (x informado pelo usuário)
+//Função que mostra a média da nota do dia dos últimos x dias (x informado pelo usuário);
 void mediaNotaDoDia(NoLista** l){
     if(!estaVazia(l)){
         int v, z = 0;
@@ -232,7 +149,7 @@ void mediaNotaDoDia(NoLista** l){
 }
 
 
-//Mostrar humor mais frequente dos últimos x dias (x informado pelo usuário)
+//Função que mostra o humor mais frequente do usuário dos últimos x dias (x informado pelo usuário);
 void humorMaisFrequente(NoLista** l) {
     if(!estaVazia(l)){
         int v, z = 0;
@@ -265,7 +182,7 @@ void humorMaisFrequente(NoLista** l) {
         printf("Lista Vazia!\n\n");
 }
 
-//Mostrar os motivos dos dias com humor x (x informado pelo usuário)
+//Função que mostra os motivos de um determinado humor x (x informado pelo usuário);
 void motivoDiaHumor(NoLista** l) {
     if(!estaVazia(l)) {
         unsigned int aux, v = 0;
@@ -289,71 +206,11 @@ void motivoDiaHumor(NoLista** l) {
         printf("Lista Vazia!\n\n");
 }
 
+//Função que libera todos os registros de humor;
 void liberarRegistros (NoLista **l) {
     NoLista *aux, *aux2;
     for(aux = *l; aux != NULL; aux = aux2) {
         aux2 = aux->prox;
         free(aux);
     }
-}
-
-int main() {
-
-    int opc;
-    NoLista* lista;
-
-    criarLista(&lista);
-
-    do{
-    printf("----------------MENU------------------\n");
-    printf("1 - Adicionar novo registro\n");
-    printf("2 - Remover registro por id\n");
-    printf("3 - Buscar por humor\n");
-    printf("4 - Imprimir todos os registros\n");
-    printf("5 - Mostrar media da notaDoDia\n");
-    printf("6 - Mostrar humor mais frequente\n");
-    printf("7 - Mostrar os motivos do humor\n");
-    printf("8 - Sair\n");
-    printf("Escolha uma opcao: ");
-    scanf("%d", &opc);
-    printf("-------------------------------------------\n\n");
-
-    switch (opc) {
-        case 1: {
-            RegistroDeHumor regist = *criarRegistro();
-            insereNoFim(&lista, regist);
-            break;
-        }
-        case 2: {
-            removerRegistroPorId(&lista);
-            break;
-        }
-        case 3: {
-            buscarRegistroPorHumor(&lista);
-            break;
-        }
-        case 4: {
-            imprimirTodosRegistros(&lista);
-            break;
-        }
-        case 5: {
-            mediaNotaDoDia(&lista);
-            break;
-        }
-        case 6: {
-            humorMaisFrequente(&lista);
-            break;
-        }
-        case 7: {
-            motivoDiaHumor(&lista);
-            break;
-        }
-        case 8: {
-            printf("Obrigado por utilizar de nosso programa :)");
-            break;
-        }
-        default:
-        break;
-    }
-    }while(opc!=8);
 }
