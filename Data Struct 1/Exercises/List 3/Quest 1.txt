@@ -1,0 +1,3 @@
+Porque as estruturas de dados filas e pilhas podem ser consideradas restrições da estrutura
+de dados lista encadeada?
+
