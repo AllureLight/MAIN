@@ -1,3 +1,9 @@
-Porque as estruturas de dados filas e pilhas podem ser consideradas restrições da estrutura
-de dados lista encadeada?
+Porque as estruturas de dados filas e pilhas podem ser 
+consideradas restrições da estruturade dados lista encadeada?
 
+    porque elas impõem regras específicas de acesso e 
+    manipulação dos elementos, enquanto a lista encadeada 
+    é uma estrutura mais genérica e flexível.
+
+Pilha - Entrada: Somente topo / Saida: LIFO (Last in, First Out) 
+Fila - Entrada: Somente fim / Saida: FIFO (First in, First Out)
