@@ -81,6 +81,35 @@ float maior(Fila *f){
     }
 }
 
+void combinaFilas1(Fila *f_res, Fila *f1, Fila *f2)/*FIRST VERSION*/{
+    if(estaVazia(f1) && estaVazia(f2)){
+        printf("ambas estão vazias");
+        return;
+    }
+    for(;!estaVazia(f1) || !estaVazia(f2);){
+        if(!estaVazia(f1)){
+            inserir(f_res, remover(f1));
+        }
+        if(!estaVazia(f2)){
+            inserir(f_res, remover(f2));
+        }
+        }
+}
+
+void combinaFilas2(Fila *f_res, Fila *f1, Fila *f2)/*SECOND VERSION*/{
+    if(estaVazia(f1) && estaVazia(f2)){
+        printf("ambas estão vazias");
+        return;
+    }
+    if(!estaVazia(f1)){
+        inserir(f_res, remover(f1));
+    }
+    if(!estaVazia(f2)){
+        inserir(f_res, remover(f2));
+    }
+    combinaFilas2(f_res, f1, f2);
+}
+
 int main(){
 
 }
