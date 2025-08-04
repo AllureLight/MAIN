@@ -3,12 +3,48 @@
 #include "RegistroDeHumor.h"
 #include "ListaDuplamenteEnc.h"
 
+//Le o arquivo.txt que contém os registros de humor
+void lerArquivo(NoLista** l){
+    FILE* arquivo = fopen("RegistrosDoPrograma.txt", "r");
+    if(arquivo != NULL){
+        RegistroDeHumor aux;
+
+        char cabecalho[50];
+        fgets(cabecalho, sizeof(cabecalho), arquivo);
+
+        while(fscanf(arquivo, "%d   %d %d %d  %d      %d            %[^\n]", &aux.id, &aux.dat.Dia, &aux.dat.Mes, &aux.dat.Ano, &aux.animo, &aux.NotaDoDia, aux.Motivo) == 7){  
+            insereNoFim(l, aux);
+            IdGlobal++;
+        }
+        fclose(arquivo);
+    }
+}
+
+//Sobrepoe o arquivo antigo pelo atualizado
+void sobreporArquivo(NoLista** l){
+    FILE* arquivo = fopen("RegistrosDoPrograma.txt", "w");
+    if (arquivo != NULL) {
+        NoLista* aux = *l;
+        fprintf(arquivo, "ID: DATA:\t\tANIMO: NOTA DO DIA:\tMOTIVO:\n");
+        while(aux != NULL) {
+            fprintf(arquivo, "%d   %d %d %d  %d      %d            %s\n", aux->info.id, aux->info.dat.Dia, aux->info.dat.Mes, aux->info.dat.Ano, aux->info.animo, aux->info.NotaDoDia, aux->info.Motivo);
+            aux = aux->prox;
+        }
+        fclose(arquivo);
+    }
+    else {
+        printf("Erro ao abrir o arquivo!");
+    }
+}
+
 int main() {
 
     int opc;
     NoLista* lista;
 
     criarLista(&lista);
+
+    lerArquivo(&lista);
 
     do{
     printf("----------------MENU------------------\n");
@@ -56,6 +92,7 @@ int main() {
         }
         case 8: {
             printf("Obrigado por utilizar de nosso programa :)");
+            sobreporArquivo(&lista);
             break;
         }
         default:

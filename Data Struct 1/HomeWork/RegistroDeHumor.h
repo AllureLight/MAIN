@@ -1,6 +1,8 @@
 #ifndef _REGISTRODEHUMOR_H
 #define _REGISTRODEHUMOR_H
 
+extern int IdGlobal;
+
 //Estrutura que define e enumera os humores;
 typedef enum humor{
     FELIZ,
